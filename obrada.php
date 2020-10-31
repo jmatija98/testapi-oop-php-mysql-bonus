@@ -22,6 +22,18 @@
             }
             $_POST = array();
             exit();
-        }
+        }elseif($_POST["kategorija_naziv"] != null) {
+            $naziv = $_POST["kategorija_naziv"];
+            if ($mydb->insert("kategorije", "naziv", [$naziv])) {
+                echo "Uspesno ubacena kategorija";
+            } else {
+                echo "Neuspesno!";
+            }
+            $_POST = array();
+            exit();
+        
+        } 
+
+
     }
 ?>
