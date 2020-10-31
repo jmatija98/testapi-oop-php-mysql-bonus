@@ -43,6 +43,27 @@
             exit();
         }
 
+        elseif($_POST["kategorija_odabir_put"] != null && $_POST["novosti_id"] != null && $_POST["tekst_novosti_put"] != null &&  $_POST["naslov_novosti_put"] != null) {
+            $niz = ["naslov"=> "'".$_POST["naslov_novosti_put"]."'", "tekst"=>"'".$_POST["tekst_novosti_put"]."'", "datumvreme"=>"NOW()", "kategorija_id"=>$_POST["kategorija_odabir_put"]];
+            if ($mydb->update("novosti", "novosti_id", "naslov, tekst, datumvreme, kategorija_id", $niz)) {
+                echo "Uspesno izmenjena novost";
+            } else {
+                echo "Neuspesno!";
+            }
+            $_POST = array();
+            exit();
+
+        } else {
+            $tabela = $_POST["odabir_tabele"];
+            if ($mydb->select($tabela, "*", null, null, null)) {
+                echo "Uspesno prikazana tabela";
+            } else {
+                echo "Neuspesno!";
+            }
+        	$_POST = array();
+        	exit();
+        }
+
 
     }
 ?>
