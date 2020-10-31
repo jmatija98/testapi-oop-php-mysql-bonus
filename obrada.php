@@ -32,7 +32,16 @@
             $_POST = array();
             exit();
         
-        } 
+        } elseif($_POST["kategorija_naziv_put"] != null && $_POST["kategorija_id"] != null) {
+            $naziv = $_POST["kategorija_naziv_put"];
+            if ($mydb->update("kategorije", $_POST["kategorija_id"], "naziv", [$naziv])) {
+                echo "Uspesno izmenjena kategorija!";
+            } else {
+                echo "Neuspesno!";
+            }
+            $_POST = array();
+            exit();
+        }
 
 
     }
